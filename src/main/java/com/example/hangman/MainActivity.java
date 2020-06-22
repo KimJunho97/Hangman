@@ -14,11 +14,12 @@ public class MainActivity extends AppCompatActivity {
     View.OnClickListener onNewGameButtonClicked = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent gameIntent = new Intent(MainActivity.this, SelectActivity.class);
+            Intent gameIntent = new Intent(MainActivity.this, GameActivity.class);
             startActivity(gameIntent);
         }
     };
-    View.OnClickListener onDictionaryButtonClicked = new View.OnClickListener() {
+    
+     View.OnClickListener onDictionaryButtonClicked = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             Intent dictionaryIntent = new Intent(MainActivity.this, DictionaryActivity.class);
