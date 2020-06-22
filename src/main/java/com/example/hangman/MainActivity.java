@@ -18,6 +18,13 @@ public class MainActivity extends AppCompatActivity {
             startActivity(gameIntent);
         }
     };
+    View.OnClickListener onDictionaryButtonClicked = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent dictionaryIntent = new Intent(MainActivity.this, DictionaryActivity.class);
+            startActivity(dictionaryIntent);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
