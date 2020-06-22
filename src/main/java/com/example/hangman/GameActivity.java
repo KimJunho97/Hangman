@@ -1,5 +1,6 @@
 package com.example.hangman;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,14 +16,19 @@ import java.util.List;
 
 public class GameActivity extends AppCompatActivity {
 
-    private static final int MAX_TURNS = 10;
+    private static final int EASY_TURNS = 10;
+    private static final int DIFFICULT_TURNS = 7;
 
+    private TextView fieldlevelTextView;
     private TextView wordTextView;
     private ImageView hangmanImage;
     private TextView leftGuessesTextView;
     private TextView usedCharactersTextView;
     private EditText characterEditText;
     private Button guessButton;
+    private String field;
+    private String level;
+    private int max_opportunity;
 
     private DataBaseHelper db = new DataBaseHelper(this);
 
@@ -47,12 +53,28 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
+        fieldlevelTextView = (TextView) findViewById(R.id.fieldlevel);
         wordTextView = (TextView) findViewById(R.id.wordTextView);
         hangmanImage = (ImageView) findViewById(R.id.hangmanImageView);
         leftGuessesTextView = (TextView) findViewById(R.id.leftGuessesTextView);
         usedCharactersTextView = (TextView) findViewById(R.id.usedCharactersTextView);
         characterEditText = (EditText) findViewById(R.id.characterEditText);
         guessButton = (Button) findViewById(R.id.guessButton);
+
+
+        //SelectActuvuty로부터 분야,레벨 받아오기
+        Intent gameintent = getIntent();
+        field = gameintent.getStringExtra("field");
+        level = gameintent.getStringExtra("level");
+
+        fieldlevelTextView.setText("분야 :" + field + "\n" + "난이도 :" +  level + "\n" );
+
+        if(level.equalsIgnoreCase("Easy")){
+            max_opportunity = EASY_TURNS;
+        }
+        if(level.equalsIgnoreCase("Difficult")){
+            max_opportunity = DIFFICULT_TURNS;
+        }
 
         guessButton.setOnClickListener(onGuessButtonClicked);
 
@@ -106,7 +128,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private int getTriesLeft() {
-        return MAX_TURNS - wrong.size();
+        return max_opportunity - wrong.size();
     }
 
     private String getDisplayedWord() {
@@ -130,46 +152,77 @@ public class GameActivity extends AppCompatActivity {
 
     private void setHangmanImage() {
         int triesLeft = getTriesLeft();
-        int resource;
-        switch (triesLeft) {
-            case 0:
-                resource = R.drawable.hangman10;
-                break;
-            case 1:
-                resource = R.drawable.hangman9;
-                break;
-            case 2:
-                resource = R.drawable.hangman8;
-                break;
-            case 3:
-                resource = R.drawable.hangman7;
-                break;
-            case 4:
-                resource = R.drawable.hangman6;
-                break;
-            case 5:
-                resource = R.drawable.hangman5;
-                break;
-            case 6:
-                resource = R.drawable.hangman4;
-                break;
-            case 7:
-                resource = R.drawable.hangman3;
-                break;
-            case 8:
-                resource = R.drawable.hangman2;
-                break;
-            case 9:
-                resource = R.drawable.hangman1;
-                break;
-            case 10:
-                resource = R.drawable.hangman0;
-                break;
-            default:
-                resource = R.drawable.hangman10;
-                break;
+        int resource = R.drawable.hangman0;
+
+        if(level == "Easy"){
+            switch (triesLeft) {
+                case 0:
+                    resource = R.drawable.hangman10;
+                    break;
+                case 1:
+                    resource = R.drawable.hangman9;
+                    break;
+                case 2:
+                    resource = R.drawable.hangman8;
+                    break;
+                case 3:
+                    resource = R.drawable.hangman7;
+                    break;
+                case 4:
+                    resource = R.drawable.hangman6;
+                    break;
+                case 5:
+                    resource = R.drawable.hangman5;
+                    break;
+                case 6:
+                    resource = R.drawable.hangman4;
+                    break;
+                case 7:
+                    resource = R.drawable.hangman3;
+                    break;
+                case 8:
+                    resource = R.drawable.hangman2;
+                    break;
+                case 9:
+                    resource = R.drawable.hangman1;
+                    break;
+                case 10:
+                    resource = R.drawable.hangman0;
+                    break;
+                default:
+                    resource = R.drawable.hangman10;
+                    break;
+            }
         }
 
+        if(level == "Difficult"){
+            switch (triesLeft) {
+                case 0:
+                    resource = R.drawable.hangman10;
+                    break;
+                case 1:
+                    resource = R.drawable.hangman8;
+                    break;
+                case 2:
+                    resource = R.drawable.hangman6;
+                    break;
+                case 3:
+                    resource = R.drawable.hangman4;
+                    break;
+                case 4:
+                    resource = R.drawable.hangman2;
+                    break;
+                case 5:
+                    resource = R.drawable.hangman1;
+                    break;
+                case 6:
+                    resource = R.drawable.hangman0;
+                    break;
+                default:
+                    resource = R.drawable.hangman10;
+                    break;
+            }
+        }
         hangmanImage.setImageResource(resource);
     }
 
