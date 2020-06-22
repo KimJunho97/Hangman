@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity {
 
     Button newGameButton;
+    Button dictionaryButton;
     View.OnClickListener onNewGameButtonClicked = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -24,7 +25,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         newGameButton = (Button) findViewById(R.id.newGameButton);
+        dictionaryButton = (Button) findViewById(R.id.dictionaryButton);
 
         newGameButton.setOnClickListener(onNewGameButtonClicked);
+        dictionaryButton.setOnClickListener(onDictionaryButtonClicked);
     }
 }
