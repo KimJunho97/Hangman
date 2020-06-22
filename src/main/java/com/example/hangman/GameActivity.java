@@ -154,7 +154,7 @@ public class GameActivity extends AppCompatActivity {
         int triesLeft = getTriesLeft();
         int resource = R.drawable.hangman0;
 
-        if(level == "Easy"){
+        if(level.equalsIgnoreCase("Easy")){
             switch (triesLeft) {
                 case 0:
                     resource = R.drawable.hangman10;
@@ -195,27 +195,30 @@ public class GameActivity extends AppCompatActivity {
             }
         }
 
-        if(level == "Difficult"){
+        if(level.equalsIgnoreCase("Difficult")){
             switch (triesLeft) {
                 case 0:
                     resource = R.drawable.hangman10;
                     break;
                 case 1:
-                    resource = R.drawable.hangman8;
+                    resource = R.drawable.hangman9;
                     break;
                 case 2:
-                    resource = R.drawable.hangman6;
+                    resource = R.drawable.hangman7;
                     break;
                 case 3:
-                    resource = R.drawable.hangman4;
+                    resource = R.drawable.hangman6;
                     break;
                 case 4:
-                    resource = R.drawable.hangman2;
+                    resource = R.drawable.hangman4;
                     break;
                 case 5:
-                    resource = R.drawable.hangman1;
+                    resource = R.drawable.hangman2;
                     break;
                 case 6:
+                    resource = R.drawable.hangman1;
+                    break;
+                case 7:
                     resource = R.drawable.hangman0;
                     break;
                 default:
