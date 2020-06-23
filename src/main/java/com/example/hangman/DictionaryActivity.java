@@ -10,6 +10,7 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -33,7 +34,7 @@ public class DictionaryActivity extends AppCompatActivity {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     DataBaseHelper db = new DataBaseHelper(DictionaryActivity.this);
-                    db.deleteWord(word);
+                    db.deletePWord(word);
                     words.remove(word);
                     adapter.notifyDataSetChanged();
                     Toast.makeText(DictionaryActivity.this, "You deleted " + word.getWord(), Toast.LENGTH_LONG).show();
@@ -80,6 +81,12 @@ public class DictionaryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dictionary);
+
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.title_primary);
+
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.title_primary);
 
         DataBaseHelper helper = new DataBaseHelper(this);
         words = helper.getAll();

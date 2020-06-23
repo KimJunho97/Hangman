@@ -1,137 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GameActivity"
-    tools:layout_editor_absoluteY="81dp"
-    tools:layout_editor_absoluteX="0dp">
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/wordTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="W _ _ D"
-        android:textAlignment="center"
-        android:textSize="36sp"
-        android:textStyle="bold"
-        tools:layout_constraintTop_creator="1"
-        tools:layout_constraintRight_creator="1"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="16dp"
-        tools:layout_constraintLeft_creator="1"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:gravity="center_horizontal" />
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#000000">
 
-    <ImageView
-        android:id="@+id/hangmanImageView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:srcCompat="@drawable/hangman0"
-        tools:layout_constraintTop_creator="1"
-        tools:layout_constraintRight_creator="1"
-        tools:layout_constraintBottom_creator="1"
-        app:layout_constraintBottom_toTopOf="@+id/leftGuessesTV"
-        android:layout_marginStart="7dp"
-        android:layout_marginEnd="7dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="23dp"
-        app:layout_constraintTop_toBottomOf="@+id/wordTextView"
-        tools:layout_constraintLeft_creator="1"
-        android:layout_marginBottom="21dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginLeft="7dp"
-        android:layout_marginRight="7dp" />
+        <ImageView
+            android:id="@+id/hangmanImageView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:background="@drawable/hangman0"
+            android:layout_marginStart="7dp"
+            android:layout_marginEnd="7dp" />
 
-    <EditText
-        android:id="@+id/characterEditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Enter character"
-        android:inputType="textPersonName"
-        tools:layout_constraintBottom_creator="1"
-        android:layout_marginStart="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_constraintLeft_creator="1"
-        android:layout_marginBottom="34dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginLeft="16dp" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#00000000"
+            android:padding="10px">
 
-    <Button
-        android:id="@+id/guessButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Guess"
-        tools:layout_constraintRight_creator="1"
-        tools:layout_constraintBottom_creator="1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginEnd="30dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginBottom="32dp"
-        android:layout_marginRight="30dp" />
+            <TextView
+                android:id="@+id/fieldlevel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="280dp"
+                android:layout_marginRight="10dp"
+                android:textColor="#ffffff"
+                android:gravity="right"
+                android:text="난이도 :\n레벨 :"
+                android:textSize="15dp"
+                android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/leftGuessesTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Left Guesses:"
-        android:textAlignment="center"
-        android:textStyle="bold"
-        tools:layout_constraintRight_creator="1"
-        tools:layout_constraintBottom_creator="1"
-        app:layout_constraintBottom_toTopOf="@+id/usedCharactersTV"
-        app:layout_constraintRight_toRightOf="@+id/usedCharactersTV"
-        android:layout_marginBottom="15dp"
-        android:gravity="center_horizontal" />
+            <TextView
+                android:id="@+id/wordTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="W _ _ D"
+                android:textColor="#ffffff"
+                android:textAlignment="center"
+                android:textSize="40sp"
+                android:textStyle="bold"
+                android:layout_marginTop="60dp"
+                android:layout_centerHorizontal="true"
+                android:gravity="center_horizontal" />
 
-    <TextView
-        android:id="@+id/usedCharactersTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Used Characters:"
-        android:textAlignment="center"
-        android:textStyle="bold"
-        tools:layout_constraintBottom_creator="1"
-        android:layout_marginStart="45dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_constraintLeft_creator="1"
-        android:layout_marginBottom="132dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginLeft="45dp"
-        android:gravity="center_horizontal" />
+            <EditText
+                android:id="@+id/characterEditText"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:ems="10"
+                android:textColor="#ffffff"
+                android:hint=" Enter character"
+                android:textColorHint="#ffffff"
+                android:inputType="textPersonName"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="550dp"
+                android:layout_marginBottom="0dp"
+                android:layout_marginLeft="16dp"
+                android:background="@drawable/character_edittext"/>
 
-    <TextView
-        android:id="@+id/leftGuessesTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:text="10"
-        android:textAlignment="center"
-        tools:layout_constraintTop_creator="1"
-        tools:layout_constraintBottom_creator="1"
-        android:layout_marginStart="1dp"
-        app:layout_constraintBottom_toBottomOf="@+id/leftGuessesTV"
-        tools:layout_constraintLeft_creator="1"
-        app:layout_constraintLeft_toLeftOf="@+id/usedCharactersTextView"
-        app:layout_constraintTop_toTopOf="@+id/leftGuessesTV"
-        android:layout_marginLeft="1dp"
-        android:gravity="center_horizontal" />
+            <Button
+                android:id="@+id/guessButton"
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:text="Guess"
+                android:layout_toRightOf="@+id/characterEditText"
+                android:layout_marginTop="550dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginBottom="0dp"
+                android:layout_marginRight="0dp"
+                android:layout_marginLeft="30dp"/>
 
-    <TextView
-        android:id="@+id/usedCharactersTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="A, B, C, D, E, F, G, H, I, J"
-        android:textAlignment="center"
-        tools:layout_constraintTop_creator="1"
-        tools:layout_constraintRight_creator="1"
-        android:layout_marginEnd="28dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="15dp"
-        app:layout_constraintTop_toBottomOf="@+id/leftGuessesTextView"
-        android:layout_marginRight="28dp"
-        android:gravity="center_horizontal" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/leftGuessesTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Left Guesses :"
+                android:textAlignment="center"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:textColor="#ffffff"
+                android:layout_marginTop="500dp"
+                android:layout_marginBottom="0dp"
+                android:layout_marginLeft="32dp"
+                android:gravity="center_horizontal" />
+
+            <TextView
+                android:id="@+id/usedCharactersTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Used Characters :"
+                android:textAlignment="center"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:textColor="#ffffff"
+                android:layout_marginTop="520dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="32dp"
+                android:gravity="center_horizontal" />
+
+            <TextView
+                android:id="@+id/leftGuessesTextView"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="158dp"
+                android:layout_marginTop="498dp"
+                android:layout_marginBottom="0dp"
+                android:textColor="#ffffff"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/usedCharactersTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="A, B, C, D, E, F, G, H, I, J"
+                android:textAlignment="center"
+                android:textColor="#ffffff"
+                android:layout_marginTop="520dp"
+                android:layout_marginLeft="160dp"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:gravity="center_horizontal" />
+        </RelativeLayout>
+    </FrameLayout>
+</LinearLayout>
