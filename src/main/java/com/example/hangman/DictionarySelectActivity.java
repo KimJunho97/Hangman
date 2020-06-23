@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,9 +19,9 @@ public class DictionarySelectActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.title_dictionary);
 
-        Button primaryBtn = (Button)findViewById(R.id.primaryBtn);
-        Button secondaryBtn = (Button)findViewById(R.id.secondaryBtn);
-        Button higherBtn = (Button)findViewById(R.id.higherBtn);
+        ImageButton primaryBtn = (ImageButton)findViewById(R.id.primaryBtn);
+        ImageButton secondaryBtn = (ImageButton)findViewById(R.id.secondaryBtn);
+        ImageButton higherBtn = (ImageButton)findViewById(R.id.higherBtn);
 
         primaryBtn.setOnClickListener(new View.OnClickListener() {
             @Override

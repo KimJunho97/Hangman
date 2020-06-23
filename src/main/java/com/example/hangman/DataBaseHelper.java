@@ -275,11 +275,11 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public void deleteWord(Word word) {
+    public void deletePWord(Word word) {
         SQLiteDatabase db = null;
         try {
             db = getWritableDatabase();
-            db.delete(TABLE_WORDS_PRIMARY, "_id = ?", new String[]{Integer.toString(word.getId())});
+            db.delete(TABLE_WORDS_PRIMARY, "p_id = ?", new String[]{Integer.toString(word.getId())});
         } catch (SQLException e) {
             logException(e);
         } finally {
@@ -288,11 +288,26 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             }
         }
     }
-    public void deleteWord(Word word,String name) {
+
+    public void deleteSWord(Word word) {
         SQLiteDatabase db = null;
         try {
             db = getWritableDatabase();
-            db.delete(name, "_id = ?", new String[]{Integer.toString(word.getId())});
+            db.delete(TABLE_WORDS_SECONDARY, "s_id = ?", new String[]{Integer.toString(word.getId())});
+        } catch (SQLException e) {
+            logException(e);
+        } finally {
+            if (db != null) {
+                db.close();
+            }
+        }
+    }
+
+    public void deleteHWord(Word word) {
+        SQLiteDatabase db = null;
+        try {
+            db = getWritableDatabase();
+            db.delete(TABLE_WORDS_HIGHER, "h_id = ?", new String[]{Integer.toString(word.getId())});
         } catch (SQLException e) {
             logException(e);
         } finally {

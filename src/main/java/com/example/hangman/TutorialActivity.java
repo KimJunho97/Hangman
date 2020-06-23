@@ -35,7 +35,7 @@ public class TutorialActivity extends AppCompatActivity {
         //ImageView 7개를 만들어서 ViewFlipper에게 추가함
         //layout_width와 layout_height에 대한 특별한 지정이 없다면
         //기본적으로 'match_parent'로 설정됨.
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < 8; i++) {
             ImageView img = new ImageView(this);
             img.setImageResource(R.drawable.gametitle_04 + i);
             flipper.addView(img);

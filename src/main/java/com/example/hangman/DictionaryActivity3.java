@@ -38,7 +38,7 @@ public class DictionaryActivity3 extends AppCompatActivity {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     DataBaseHelper db = new DataBaseHelper(DictionaryActivity3.this);
-                    db.deleteWord(word,TABLE_WORDS_HIGHER);
+                    db.deleteHWord(word);
                     words.remove(word);
                     adapter.notifyDataSetChanged();
                     Toast.makeText(DictionaryActivity3.this, "You deleted " + word.getWord(), Toast.LENGTH_LONG).show();
@@ -85,6 +85,9 @@ public class DictionaryActivity3 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dictionary3);
+
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.title_higher);
 
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.title_higher);
