@@ -1,6 +1,7 @@
 package com.example.hangman;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
@@ -17,7 +19,8 @@ import java.util.List;
 public class GameActivity extends AppCompatActivity {
 
     private static final int EASY_TURNS = 10;
-    private static final int DIFFICULT_TURNS = 7;
+    private static final int MEDIUM_TURNS = 7;
+    private static final int DIFFICULT_TURNS = 5;
 
     private TextView fieldlevelTextView;
     private TextView wordTextView;
@@ -29,6 +32,11 @@ public class GameActivity extends AppCompatActivity {
     private String field;
     private String level;
     private int max_opportunity;
+
+    String get_word;
+    String words[];
+    String word_chosed;
+    String mean_chosed;
 
     private DataBaseHelper db = new DataBaseHelper(this);
 
@@ -53,6 +61,9 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.title_logo);
+
         fieldlevelTextView = (TextView) findViewById(R.id.fieldlevel);
         wordTextView = (TextView) findViewById(R.id.wordTextView);
         hangmanImage = (ImageView) findViewById(R.id.hangmanImageView);
@@ -69,8 +80,12 @@ public class GameActivity extends AppCompatActivity {
 
         fieldlevelTextView.setText("분야 :" + field + "\n" + "난이도 :" +  level + "\n" );
 
+
         if(level.equalsIgnoreCase("Easy")){
             max_opportunity = EASY_TURNS;
+        }
+        if(level.equalsIgnoreCase("Medium")){
+            max_opportunity = MEDIUM_TURNS;
         }
         if(level.equalsIgnoreCase("Difficult")){
             max_opportunity = DIFFICULT_TURNS;
@@ -78,8 +93,13 @@ public class GameActivity extends AppCompatActivity {
 
         guessButton.setOnClickListener(onGuessButtonClicked);
 
-        Word word = db.getRandom();
-        chars = word.getWord().toUpperCase().toCharArray();
+        Word word = db.getRandom(field);
+
+        get_word = word.getWord();
+        words = get_word.split("=");
+        word_chosed = words[0];
+        mean_chosed = words[1];
+        chars = word_chosed.toUpperCase().toCharArray();
 
         selectChar(chars[0]);
         selectChar(chars[chars.length - 1]);
@@ -92,7 +112,10 @@ public class GameActivity extends AppCompatActivity {
                 !isAlphabetic(character)) return;
 
         if (used.contains(character)) {
-            Toast.makeText(this, character + " is already used!", Toast.LENGTH_LONG).show();
+            Toast toast = Toast.makeText(this, character + " is already used!", Toast.LENGTH_LONG);
+            TextView v = (TextView) toast.getView().findViewById(android.R.id.message);
+            v.setTextColor(Color.BLACK);
+            toast.show();
             return;
         }
 
@@ -112,10 +135,17 @@ public class GameActivity extends AppCompatActivity {
             wrong.add(character);
         if (solved) {
             state = State.WON;
-            Toast.makeText(this, "You won!", Toast.LENGTH_LONG).show();
+            Toast toast = Toast.makeText(this, "You won!" + "\n단어 :" + word_chosed + " 뜻 :" + mean_chosed, Toast.LENGTH_LONG);
+            TextView v = (TextView) toast.getView().findViewById(android.R.id.message);
+            v.setTextColor(Color.BLACK);
+            toast.show();
+
         } else if (getTriesLeft() == 0) {
             state = State.LOST;
-            Toast.makeText(this, "You lost!", Toast.LENGTH_LONG).show();
+            Toast toast = Toast.makeText(this, "You lost!" + "\n단어 :" + word_chosed + " 뜻 :" + mean_chosed, Toast.LENGTH_LONG);
+            TextView v = (TextView) toast.getView().findViewById(android.R.id.message);
+            v.setTextColor(Color.BLACK);
+            toast.show();
         }
     }
 
@@ -124,6 +154,7 @@ public class GameActivity extends AppCompatActivity {
         characterEditText.setText("");
         usedCharactersTextView.setText(StringUtil.join(",", used));
         leftGuessesTextView.setText(String.valueOf(getTriesLeft()));
+        leftGuessesTextView.setTextColor(Color.WHITE);
         setHangmanImage();
     }
 
@@ -195,7 +226,7 @@ public class GameActivity extends AppCompatActivity {
             }
         }
 
-        if(level.equalsIgnoreCase("Difficult")){
+        if(level.equalsIgnoreCase("Medium")){
             switch (triesLeft) {
                 case 0:
                     resource = R.drawable.hangman10;
@@ -219,6 +250,32 @@ public class GameActivity extends AppCompatActivity {
                     resource = R.drawable.hangman1;
                     break;
                 case 7:
+                    resource = R.drawable.hangman0;
+                    break;
+                default:
+                    resource = R.drawable.hangman10;
+                    break;
+            }
+        }
+
+        if(level.equalsIgnoreCase("Difficult")){
+            switch (triesLeft) {
+                case 0:
+                    resource = R.drawable.hangman10;
+                    break;
+                case 1:
+                    resource = R.drawable.hangman8;
+                    break;
+                case 2:
+                    resource = R.drawable.hangman6;
+                    break;
+                case 3:
+                    resource = R.drawable.hangman2;
+                    break;
+                case 4:
+                    resource = R.drawable.hangman1;
+                    break;
+                case 5:
                     resource = R.drawable.hangman0;
                     break;
                 default:
