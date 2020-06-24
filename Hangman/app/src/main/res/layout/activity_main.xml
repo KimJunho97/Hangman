@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#000000">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:background="@drawable/background"
+            android:padding="10dp" />
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#00000000"
+            android:padding="10px">
+
+            <Button
+                android:id="@+id/tutorialButton"
+                android:layout_width="match_parent"
+                android:layout_height="38dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="517dp"
+                android:background="#80898686"
+                android:gravity="center"
+                android:padding="7dip"
+                android:text="Tutorial"
+                android:textColor="#ffffff"
+                android:textSize="17dp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/newGameButton"
+                android:layout_width="match_parent"
+                android:layout_height="38dp"
+                android:layout_below="@+id/tutorialButton"
+                android:layout_gravity="center"
+                android:layout_marginTop="7dp"
+                android:background="#80898686"
+                android:gravity="center"
+                android:padding="7dip"
+                android:text="New Game"
+                android:textColor="#ffffff"
+                android:textSize="17dp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/dictionaryButton"
+                android:layout_width="match_parent"
+                android:layout_height="38dp"
+                android:layout_below="@+id/newGameButton"
+                android:layout_marginTop="7dp"
+                android:background="#80898686"
+                android:gravity="center"
+                android:padding="3dip"
+                android:text="Dictionary"
+                android:textColor="#ffffff"
+                android:textSize="17dp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+    </FrameLayout>
+</LinearLayout>
